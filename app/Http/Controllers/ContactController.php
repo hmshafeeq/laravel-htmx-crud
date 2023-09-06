@@ -22,7 +22,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contacts.partials.form')->render();
     }
 
     /**
@@ -30,7 +30,15 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+        ]);
+         
+
+        $contact = Contact::create($request->all());
+       
+        return view('contacts.partials.form')->render();
     }
 
     /**
@@ -63,6 +71,5 @@ class ContactController extends Controller
     public function destroy(string $id)
     {
         Contact::destroy($id);
-
     }
 }
