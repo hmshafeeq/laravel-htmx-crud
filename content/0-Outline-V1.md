@@ -77,3 +77,5 @@
 - Encouraging viewers to explore further on their own.
 
 Remember to provide practical examples and code walkthroughs in each episode, and encourage your viewers to follow along with their own Laravel projects
+
+
