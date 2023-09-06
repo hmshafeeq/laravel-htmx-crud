@@ -1,5 +1,5 @@
-<x-modal name="create-contact" :show="$errors->isEmpty()" hx-trigger="submit" focusable>
-<form method="post" action="{{ route('contacts.store') }}" class="mt-6 space-y-6 p-6" >
+ 
+<form hx-post="{{ route('contacts.store') }}" class="mt-6 space-y-6 p-6"  hx-swap="outerHTML">
   @csrf
 <div>
     <x-input-label for="name" :value="__('Name')" />
@@ -29,6 +29,5 @@
   <x-primary-button>{{ __('Save') }}</x-primary-button>  
   <x-secondary-button x-on:click="$dispatch('close')">{{ __('Cancel') }}</x-secondary-button>  
 </div> 
-</form>
-</div>
-</x-modal>
+</form> 
+ 

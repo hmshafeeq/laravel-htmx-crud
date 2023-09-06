@@ -38,7 +38,7 @@ class ContactController extends Controller
 
         $contact = Contact::create($request->all());
        
-        return view('contacts.partials.form')->render();
+        return view('contacts.partials.row', compact('contact'))->render();
     }
 
     /**

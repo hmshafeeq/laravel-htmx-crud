@@ -13,9 +13,7 @@
             </div>
 
             <div class="flex w-full" style="justify-content: end">
-                <a href="#" hx-get="/contacts/create" hx-target="#contact-details"
-                    x-data=""
-                    x-on:click.prevent="$dispatch('open-modal', 'create-contact')">Create New Contact</a>
+                <a href="#" hx-get="/contacts/create" hx-target="#contact-details" >Create New Contact</a>
             </div>
             
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -31,21 +29,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($contacts as $contact)
-                            <div id="#contact-{{ $contact->id }}"></div>
-                            <tr>
-                                <td class="px-4 py-2 border">{{ $contact->name }}</td>
-                                <td class="px-4 py-2 border">{{ $contact->email }}</td>
-                                <td class="px-4 py-2 border">{{ $contact->phone }}</td>
-                                <td class="px-4 py-2 border">{{ $contact->address }}</td>
-                                <td class="px-4 py-2 border">
-                                    <a href="#" hx-get="/contacts/{{ $contact->id }}" hx-target="#contact-details">View</a>
-                                    <a href="#" hx-delete="/contacts/{{ $contact->id }}" 
-                                        hx-confirm="Are you sure you want to delete this contact?" 
-                                        hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
-                                        hx-target="closest tr" hx-swap="outerHTML swap:1s">Delete</a>
-                                </td>
-                            </tr>
+                        @foreach ($contacts as $contact) 
+                            @include('contacts.partials.row', compact('contact'))
                         @endforeach
                     </tbody>
                 </table> 
