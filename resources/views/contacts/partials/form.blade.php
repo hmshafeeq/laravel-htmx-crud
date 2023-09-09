@@ -1,5 +1,5 @@
- 
-<form hx-post="{{ route('contacts.store') }}" class="mt-6 space-y-6 p-6"  hx-swap="outerHTML">
+<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-3 p-3">
+<form hx-post="{{ route('contacts.store') }}" class="mt-6 space-y-6 p-6" hx-target="#contacts-table" hx-swap="beforeend">
   @csrf
 <div>
     <x-input-label for="name" :value="__('Name')" />
@@ -27,7 +27,7 @@
 
 <div class="flex items-center gap-4">
   <x-primary-button>{{ __('Save') }}</x-primary-button>  
-  <x-secondary-button x-on:click="$dispatch('close')">{{ __('Cancel') }}</x-secondary-button>  
+  <x-secondary-button hx-on:click="document.getElementById('contact-details').innerHTML=''">{{ __('Cancel') }}</x-secondary-button>
 </div> 
-</form> 
- 
+</form>
+</div>
