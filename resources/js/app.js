@@ -6,3 +6,4 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+htmx.config.useTemplateFragments = true;

@@ -37,8 +37,9 @@ class ContactController extends Controller
          
 
         $contact = Contact::create($request->all());
-       
-        return view('contacts.partials.row', compact('contact'))->render();
+        
+        
+        return  view('contacts.partials.row', compact('contact'))->render();
     }
 
     /**
@@ -54,7 +55,7 @@ class ContactController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('contacts.partials.form',['contact' => Contact::find($id)])->render();
     }
 
     /**
