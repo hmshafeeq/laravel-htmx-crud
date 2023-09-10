@@ -32,7 +32,7 @@
                     </thead>
                     <tbody id="contacts-table-body">
                         @foreach ($contacts as $contact) 
-                            @include('contacts.partials.row', compact('contact'))
+                            @include('contacts.partials.table-row', compact('contact'))
                         @endforeach
                     </tbody>
                 </table> 

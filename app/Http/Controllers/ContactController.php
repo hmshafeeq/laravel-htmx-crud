@@ -39,7 +39,7 @@ class ContactController extends Controller
         $contact = Contact::create($request->all());
         
         
-        return  view('contacts.partials.row', compact('contact'))->render();
+        return  view('contacts.partials.table-row', compact('contact'))->render();
     }
 
     /**
@@ -63,7 +63,13 @@ class ContactController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $contact = Contact::find($id);
+
+        $contact->fill($request->all());
+
+        $contact->save();
+
+        return  view('contacts.partials.table-row', compact('contact'))->render();
     }
 
     /**

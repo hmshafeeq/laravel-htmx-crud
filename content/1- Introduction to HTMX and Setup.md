@@ -47,3 +47,7 @@ By the end of this episode, you'll have a Laravel project with HTMX ready to go.
 Stay tuned for the next episode, where we'll dive deeper into how HTMX works!
 
 Remember, we're here to help you every step of the way. No question is too small, and there's no rush. Let's enjoy this learning journey together!
+
+
+
+ 

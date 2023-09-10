@@ -1,13 +1,11 @@
 <form 
   @if (isset($contact))
-    hx-swap="delete"
-    hx-target="this" 
-    hx-put="{{ route('contacts.update', $contact->id) }}" 
-  @else    
-    hx-target="this" 
-    hx-swap="delete" 
-    hx-post="{{ route('contacts.store') }}" 
+    hx-put="{{ route('contacts.update', $contact->id) }}"
+  @else
+    hx-post="{{ route('contacts.store') }}"
   @endif
+  hx-target="this"
+  hx-swap="delete"
   class="mt-6 space-y-5 p-5">
   @csrf 
 <div>
@@ -21,8 +19,8 @@
     <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', isset($contact) ? $contact->email : null)" required />
     <x-input-error class="mt-2" :messages="$errors->get('email')" />
 </div>
-{{-- 
-<div>
+
+{{-- <div>
     <x-input-label for="phone" :value="__('Phone')" />
     <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', isset($contact) ? $contact->phone : null)" required />
     <x-input-error class="mt-2" :messages="$errors->get('phone')" />
