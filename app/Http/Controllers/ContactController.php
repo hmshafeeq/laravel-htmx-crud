@@ -20,7 +20,7 @@ class ContactController extends Controller
 
     public function create()
     {
-        return view('contacts.partials.form')->render();
+        return view('contacts.create')->render();
     }
 
     public function store(Request $request)
@@ -30,23 +30,20 @@ class ContactController extends Controller
             'email' => ['required', 'email', 'max:255'],
         ]);
 
-        $contact = Contact::create($request->all());
+       Contact::create($request->all());
 
         return redirect()->route('contacts.index');
 
-        //return  view('contacts.partials.table-row', compact('contact'))->render();
-
-        //return response()->noContent()->withHeaders(['HX-Trigger' => 'newContact']);
     }
 
     public function show(string $id)
     {
-        return view('contacts.partials.show', ['contact' => Contact::find($id)]);
+        return view('contacts.show', ['contact' => Contact::find($id)]);
     }
 
     public function edit(string $id)
     {
-        return view('contacts.partials.form', ['contact' => Contact::find($id)])->render();
+        return view('contacts.edit', ['contact' => Contact::find($id)])->render();
     }
 
     public function update(Request $request, string $id)
@@ -57,13 +54,13 @@ class ContactController extends Controller
 
         $contact->save();
 
-        //return  view('contacts.partials.table-row', compact('contact'))->render();
-
-        return response()->noContent()->withHeaders(['HX-Trigger' => 'newContact']);
+        return redirect()->route('contacts.index');
     }
 
     public function destroy(string $id)
     {
         Contact::destroy($id);
+
+        return redirect()->route('contacts.index');
     }
 }
