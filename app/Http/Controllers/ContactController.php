@@ -7,60 +7,48 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
         $contacts = Contact::all();
+
+        if ($request->has('table')) {
+            return view('contacts.partials.table', ['contacts' => $contacts, 'only' => 'tableBody'])->render();
+        }
 
         return view('contacts.index', compact('contacts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('contacts.partials.form')->render();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
         ]);
-         
 
         $contact = Contact::create($request->all());
-        
-        
-        return  view('contacts.partials.table-row', compact('contact'))->render();
+
+        return redirect()->route('contacts.index');
+
+        //return  view('contacts.partials.table-row', compact('contact'))->render();
+
+        //return response()->noContent()->withHeaders(['HX-Trigger' => 'newContact']);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         return view('contacts.partials.show', ['contact' => Contact::find($id)]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        return view('contacts.partials.form',['contact' => Contact::find($id)])->render();
+        return view('contacts.partials.form', ['contact' => Contact::find($id)])->render();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $contact = Contact::find($id);
@@ -69,12 +57,11 @@ class ContactController extends Controller
 
         $contact->save();
 
-        return  view('contacts.partials.table-row', compact('contact'))->render();
+        //return  view('contacts.partials.table-row', compact('contact'))->render();
+
+        return response()->noContent()->withHeaders(['HX-Trigger' => 'newContact']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Contact::destroy($id);
