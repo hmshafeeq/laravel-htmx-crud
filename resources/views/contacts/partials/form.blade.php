@@ -1,4 +1,4 @@
-<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
+
     <div class="mb-2">
         <x-input-label for="name" :value="__('Name')"/>
         <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', isset($contact) ? $contact->name : null)" required autofocus autocomplete="name"/>
@@ -27,4 +27,3 @@
         <x-primary-button>{{ __('Save') }}</x-primary-button>
         <x-secondary-button onclick="window.location = '{{ route('contacts.index') }}'">{{ __('Cancel') }}</x-secondary-button>
     </div>
-</div>
