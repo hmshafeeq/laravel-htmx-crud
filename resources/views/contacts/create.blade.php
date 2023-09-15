@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form action="{{ route('contacts.store') }}" method="post">
                 @csrf
-                @include('contacts.form')
+                @include('contacts.partials.form')
             </form>
         </div>
     </div>

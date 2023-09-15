@@ -1,4 +1,4 @@
-<table id="contacts-table" class="table-auto w-full"  hx-get="/contacts?table" hx-trigger="newContact from:body">
+<table id="contacts-table" class="table-auto w-full">
     <thead>
         <tr>
             <th class="px-4 py-2 border text-left">Name</th>
