@@ -11,7 +11,7 @@
         <p class="text-gray-600">Email: {{ $contact->email }}</p>
         <p class="text-gray-600">Phone: {{ $contact->phone }}</p>
         <p class="text-gray-600">Address: {{ $contact->address }}</p>
-        <div class="flex items-center gap-4 mt-4">
+        <div class="flex items-center gap-2 mt-4">
             <x-primary-button onclick="window.location = '{{ route('contacts.edit', $contact->id) }}'">{{ __('Edit') }}</x-primary-button>
             <x-secondary-button onclick="window.location = '{{ route('contacts.index') }}'">{{ __('Go Back') }}</x-secondary-button>
         </div>

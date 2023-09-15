@@ -23,7 +23,7 @@
         <x-input-error class="mt-2" :messages="$errors->get('address')"/>
     </div>
 
-    <div class="flex items-center gap-4 mt-4">
+    <div class="flex items-center gap-2 mt-4">
         <x-primary-button>{{ __('Save') }}</x-primary-button>
         <x-secondary-button onclick="window.location = '{{ route('contacts.index') }}'">{{ __('Cancel') }}</x-secondary-button>
     </div>
