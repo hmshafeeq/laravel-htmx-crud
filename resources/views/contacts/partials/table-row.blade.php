@@ -13,8 +13,8 @@
     <td class="px-4 py-2 border">{{ $contact->phone }}</td>
     <td class="px-4 py-2 border">{{ $contact->address }}</td>
     <td class="px-4 py-2 border ">
-        <a href="#" class="mr-1 uppercase hover:underline" hx-get="/contacts/{{ $contact->id }}" hx-target="#contact-details">View</a>
-        <a href="#" class="mr-1 uppercase hover:underline" hx-get="/contacts/{{ $contact->id }}/edit" hx-target="#contact-details">Edit</a>
+        <a href="{{ route('contacts.show', $contact->id) }}" class="mr-1 uppercase hover:underline">View</a>
+        <a href="{{ route('contacts.edit', $contact->id) }}" class="mr-1 uppercase hover:underline">Edit</a>
         <a href="#" class="mr-1 uppercase hover:underline" hx-delete="/contacts/{{ $contact->id }}"
             hx-confirm="Are you sure you want to delete this contact?"
             hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
