@@ -6,7 +6,7 @@
     </x-slot>
 
 
-    <div class="p-5">
+    <div id="content" class="p-5">
         <h2 class="text-2xl font-bold">{{ $contact->name }}</h2>
         <p class="text-gray-600">Email: {{ $contact->email }}</p>
         <p class="text-gray-600">Phone: {{ $contact->phone }}</p>

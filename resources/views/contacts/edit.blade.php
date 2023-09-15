@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <div class="p-5">
+    <div id="content" class="p-5">
         <form action="{{ route('contacts.update', $contact->id) }}" method="post">
             @csrf
             @method('PUT')

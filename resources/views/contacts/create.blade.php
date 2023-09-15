@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="p-5">
+    <div id="content" class="p-5">
         <form action="{{ route('contacts.store') }}" method="post">
             @csrf
             @include('contacts.partials.form')
