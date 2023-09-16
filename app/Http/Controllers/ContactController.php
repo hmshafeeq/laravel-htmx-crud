@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -13,6 +13,10 @@ class ContactController extends Controller
         $searchTerm = $request->input('q');
 
         $contacts = Contact::where('name', 'LIKE', "%$searchTerm%")->get();
+
+        if ($request->header('hx-request')) {
+            return view('contacts.partials.table-body', compact('contacts'));
+        }
 
         return view('contacts.index', compact('contacts'));
     }

@@ -10,12 +10,10 @@
 
         <div class="flex justify-between p-3">
 
-            <form action="{{ route('contacts.index')  }}" method="get" class="flex gap-2">
-                <x-text-input name="q" class="px-2 py-1 block" :value="request('q')"/>
-                <x-secondary-button type="submit" class="px-4 py-2">
-                    {{ __('Search') }}
-                </x-secondary-button>
-            </form>
+            <x-text-input name="q" class="px-2 py-1 block" :value="request('q')" placeholder="Search contacts..."
+                          hx-get="{{ route('contacts.index') }}"
+                          hx-target="#contacts-table-body"
+                          hx-trigger="keyup changed delay:500ms, search"/>
 
             <x-primary-link href="{{ route('contacts.create') }}">
                 {{ __('Create New Contact') }}
@@ -36,13 +34,7 @@
             </thead>
 
             <tbody id="contacts-table-body">
-                @forelse ($contacts as $contact)
-                    @include('contacts.partials.table-row', compact('contact'))
-                @empty
-                    <tr>
-                        <td class="px-4 py-2" colspan="100%">No contacts found.</td>
-                    </tr>
-                @endforelse
+                @include('contacts.partials.table-body')
             </tbody>
 
         </table>
