@@ -8,10 +8,19 @@
 
     <div id="content">
 
-        <div class="text-md w-full justify-end bg-gray-100 text-right">
+        <div class="flex justify-between p-3">
+
+            <form action="/contacts" method="get" class="flex gap-2">
+                <x-text-input id="search" class="px-2 py-1 block" :value="request('q')"/>
+                <x-secondary-button type="submit" class="px-4 py-2">
+                    {{ __('Search') }}
+                </x-secondary-button>
+            </form>
+
             <x-primary-link href="{{ route('contacts.create') }}">
                 {{ __('Create New Contact') }}
             </x-primary-link>
+
         </div>
 
         <table id="contacts-table" class="table-auto w-full">
