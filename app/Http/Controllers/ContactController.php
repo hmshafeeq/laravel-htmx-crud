@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::all();
+        $searchTerm = $request->input('q');
+
+        $contacts = Contact::where('name', 'LIKE', "%$searchTerm%")->get();
 
         return view('contacts.index', compact('contacts'));
     }
@@ -19,14 +22,9 @@ class ContactController extends Controller
         return view('contacts.create');
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-        ]);
-
-        Contact::create($validatedData);
+        Contact::create($request->all());
 
         return redirect()->route('contacts.index');
     }
@@ -41,14 +39,9 @@ class ContactController extends Controller
         return view('contacts.edit', compact('contact'));
     }
 
-    public function update(Request $request, Contact $contact)
+    public function update(ContactRequest $request, Contact $contact)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-        ]);
-
-        $contact->update($validatedData);
+        $contact->update($request->all());
 
         return redirect()->route('contacts.index');
     }

@@ -10,8 +10,8 @@
 
         <div class="flex justify-between p-3">
 
-            <form action="/contacts" method="get" class="flex gap-2">
-                <x-text-input id="search" class="px-2 py-1 block" :value="request('q')"/>
+            <form action="{{ route('contacts.index')  }}" method="get" class="flex gap-2">
+                <x-text-input name="q" class="px-2 py-1 block" :value="request('q')"/>
                 <x-secondary-button type="submit" class="px-4 py-2">
                     {{ __('Search') }}
                 </x-secondary-button>
@@ -24,6 +24,7 @@
         </div>
 
         <table id="contacts-table" class="table-auto w-full">
+
             <thead>
                 <tr>
                     <th class="px-4 py-2 border text-left">Name</th>
@@ -33,9 +34,17 @@
                     <th class="px-4 py-2 border text-left">Actions</th>
                 </tr>
             </thead>
+
             <tbody id="contacts-table-body">
-                @each('contacts.partials.table-row', $contacts, 'contact')
+                @forelse ($contacts as $contact)
+                    @include('contacts.partials.table-row', compact('contact'))
+                @empty
+                    <tr>
+                        <td class="px-4 py-2" colspan="100%">No contacts found.</td>
+                    </tr>
+                @endforelse
             </tbody>
+
         </table>
 
     </div>
