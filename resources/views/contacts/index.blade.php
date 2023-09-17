@@ -6,8 +6,8 @@
         </h2>
     </x-slot>
 
-    <div id="form-container">
-
+    <div id="section">
+            {{--   Placeholder for the views   --}}
     </div>
 
     <div id="content">
@@ -18,7 +18,7 @@
                           hx-target="#contacts-table-body"
                           hx-trigger="keyup changed delay:500ms, search"/>
 
-            <x-primary-link hx-get="{{ route('contacts.create') }}" hx-target="#form-container">
+            <x-primary-link hx-get="{{ route('contacts.create') }}" hx-target="#section">
                 {{ __('Create New Contact') }}
             </x-primary-link>
 

@@ -28,9 +28,9 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        Contact::create($request->all());
+        $contact = Contact::create($request->all());
 
-        return response()->noContent()->withHeaders(['HX-Trigger' => 'loadContacts']);
+        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
     }
 
     public function show(Contact $contact)
@@ -47,13 +47,13 @@ class ContactController extends Controller
     {
         $contact->update($request->all());
 
-        return redirect()->route('contacts.index');
+        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
     }
 
     public function destroy(Contact $contact)
     {
         $contact->delete();
 
-        return redirect()->route('contacts.index');
+        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
     }
 }
