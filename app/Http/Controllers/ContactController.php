@@ -30,7 +30,7 @@ class ContactController extends Controller
     {
         Contact::create($request->all());
 
-        return redirect()->route('contacts.index');
+        return response()->noContent()->withHeaders(['HX-Trigger' => 'loadContacts']);
     }
 
     public function show(Contact $contact)

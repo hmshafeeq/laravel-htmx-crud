@@ -36,7 +36,7 @@
                 </tr>
             </thead>
 
-            <tbody id="contacts-table-body">
+            <tbody id="contacts-table-body" hx-get="{{ route('contacts.index') }}" hx-trigger="loadContacts from:body">
                 @include('contacts.partials.table-body')
             </tbody>
 
