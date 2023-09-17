@@ -1,15 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Contact') }}
-        </h2>
-    </x-slot>
-
-    <div id="content" class="p-5">
-        <form action="{{ route('contacts.store') }}" method="post">
-            @csrf
-            @include('contacts.partials.form')
-        </form>
-    </div>
-
-</x-app-layout>
+<div class="p-5 border-b-8 border-b-gray-100">
+    <form hx-post="{{ route('contacts.store') }}" hx-target="#form-container div" hx-swap="delete">
+        @csrf
+        @include('contacts.partials.form')
+    </form>
+</div>

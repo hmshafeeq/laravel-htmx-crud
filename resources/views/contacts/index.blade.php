@@ -6,8 +6,11 @@
         </h2>
     </x-slot>
 
-    <div id="content">
+    <div id="form-container">
 
+    </div>
+
+    <div id="content">
         <div class="flex justify-between p-3">
 
             <x-text-input name="q" class="px-2 py-1 block" :value="request('q')" placeholder="Search contacts..."
@@ -15,7 +18,7 @@
                           hx-target="#contacts-table-body"
                           hx-trigger="keyup changed delay:500ms, search"/>
 
-            <x-primary-link href="{{ route('contacts.create') }}">
+            <x-primary-link hx-get="{{ route('contacts.create') }}" hx-target="#form-container">
                 {{ __('Create New Contact') }}
             </x-primary-link>
 
@@ -38,7 +41,6 @@
             </tbody>
 
         </table>
-
     </div>
 
 </x-app-layout>
