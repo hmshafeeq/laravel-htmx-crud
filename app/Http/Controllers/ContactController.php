@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -9,10 +10,12 @@ class ContactController extends Controller
 {
     public function index(Request $request)
     {
-        $contacts = Contact::all();
+        $searchTerm = $request->input('q');
 
-        if ($request->has('table')) {
-            return view('contacts.partials.table', ['contacts' => $contacts, 'only' => 'tableBody'])->render();
+        $contacts = Contact::where('name', 'LIKE', "%$searchTerm%")->get();
+
+        if ($request->header('hx-request')) {
+            return view('contacts.partials.table-body', compact('contacts'));
         }
 
         return view('contacts.index', compact('contacts'));
@@ -20,50 +23,37 @@ class ContactController extends Controller
 
     public function create()
     {
-        return view('contacts.partials.form')->render();
+        return view('contacts.create');
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-        ]);
-
         $contact = Contact::create($request->all());
 
-        return redirect()->route('contacts.index');
-
-        //return  view('contacts.partials.table-row', compact('contact'))->render();
-
-        //return response()->noContent()->withHeaders(['HX-Trigger' => 'newContact']);
+        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
     }
 
-    public function show(string $id)
+    public function show(Contact $contact)
     {
-        return view('contacts.partials.show', ['contact' => Contact::find($id)]);
+        return view('contacts.show', compact('contact'));
     }
 
-    public function edit(string $id)
+    public function edit(Contact $contact)
     {
-        return view('contacts.partials.form', ['contact' => Contact::find($id)])->render();
+        return view('contacts.edit', compact('contact'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(ContactRequest $request, Contact $contact)
     {
-        $contact = Contact::find($id);
+        $contact->update($request->all());
 
-        $contact->fill($request->all());
-
-        $contact->save();
-
-        //return  view('contacts.partials.table-row', compact('contact'))->render();
-
-        return response()->noContent()->withHeaders(['HX-Trigger' => 'newContact']);
+        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
     }
 
-    public function destroy(string $id)
+    public function destroy(Contact $contact)
     {
-        Contact::destroy($id);
+        $contact->delete();
+
+        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
     }
 }
