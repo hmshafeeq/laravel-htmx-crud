@@ -60,6 +60,6 @@ class ContactController extends Controller
     {
         $contact->delete();
 
-        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
+        return response()->make(null, 200, ['HX-Trigger' => 'loadContacts']);
     }
 }

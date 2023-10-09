@@ -4,7 +4,6 @@
     $sortField = request('sort_field');
     $sortDir = (request('sort_dir', 'asc') === 'asc') ? 'desc' : 'asc';
     $sortIcon = ($sortField === $field) ? ($sortDir === 'asc' ? '🔼' : '🔽') : '';
-
     $hxGetUrl = request()->fullUrlWithQuery(['sort_field' => $field, 'sort_dir' => $sortDir]);
 @endphp
 
@@ -21,7 +20,5 @@
     @else
         <span>{{ Str::title($field) }}</span>
     @endif
-
-
     <span class="ml-1" role="img">{{ $sortIcon }}</span>
 </th>
