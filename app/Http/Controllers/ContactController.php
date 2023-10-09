@@ -12,10 +12,16 @@ class ContactController extends Controller
     {
         $searchTerm = $request->input('q');
 
-        $contacts = Contact::where('name', 'LIKE', "%$searchTerm%")->get();
+        $contacts = Contact::where('name', 'LIKE', "%$searchTerm%")
+            ->when($request->has('sort_field'), function ($query) use ($request) {
+                $sortField = $request->input('sort_field');
+                $sortDir = $request->input('sort_dir', 'asc');
+                $query->orderBy($sortField, $sortDir);
+            })
+            ->paginate(10);
 
-        if ($request->header('hx-request')) {
-            return view('contacts.partials.table-body', compact('contacts'));
+        if ($request->header('hx-request') && $request->header('hx-target') == 'table-container') {
+            return view('contacts.partials.table', compact('contacts'));
         }
 
         return view('contacts.index', compact('contacts'));
@@ -54,6 +60,6 @@ class ContactController extends Controller
     {
         $contact->delete();
 
-        return response()->make($contact, 200, ['HX-Trigger' => 'loadContacts']);
+        return response()->make(null, 200, ['HX-Trigger' => 'loadContacts']);
     }
 }
