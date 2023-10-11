@@ -18,7 +18,7 @@ class ContactController extends Controller
                 $sortDir = $request->input('sort_dir', 'asc');
                 $query->orderBy($sortField, $sortDir);
             })
-            ->paginate(10);
+            ->paginate(5);
 
         if ($request->header('hx-request') && $request->header('hx-target') == 'table-container') {
             return view('contacts.partials.table', compact('contacts'));

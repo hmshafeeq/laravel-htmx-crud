@@ -3,10 +3,10 @@
     <x-table :columns="['name', 'email', 'phone', 'address', 'actions']" >
         <x-table.tbody :columns="['name', 'email', 'phone', 'address', 'actions']" :records="$contacts">
 
-            <?php  $__env->slot('actions', function($record) use ($__env) { ?>
-                <x-table.actions.view :record="$record"/>
-                <x-table.actions.edit :record="$record"/>
-            <?php }); ?>
+{{--            <?php  $__env->slot('actions', function($record) use ($__env) { ?>--}}
+{{--                <x-table.actions.view :record="$record"/>--}}
+{{--                <x-table.actions.edit :record="$record"/>--}}
+{{--            <?php }); ?>--}}
 
         </x-table.tbody>
     </x-table>
