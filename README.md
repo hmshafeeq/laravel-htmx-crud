@@ -6,11 +6,9 @@ This repository contains the code for the following blog posts:
 
 2. [Table Sorting and Pagination with HTMX in Laravel](https://muhammadshafeeq.com/posts/table-sorting-and-pagination-with-htmx-in-laravel/): In this article, we explore how to implement table sorting and pagination using HTMX in your Laravel application, enhancing the user experience and improving the overall performance of your web application.
 
-## Demos 
-**Complete CRUD Implementation using HTMX in Laravel:**
+## Demo  
 ![Complete CRUD Implementation](content%2Fhtmx-basic-contacts-crud.gif)
-
-**CRUD along with Pagination and Sorting with HTMX in Laravel:**
+ 
 ![Pagination and Sorting](content%2Fhtmx-table-pagination-and-sorting.gif)
 
  
