@@ -10,7 +10,7 @@ This repository contains the code for the following blog posts:
 **Complete CRUD Implementation using HTMX in Laravel:**
 ![Complete CRUD Implementation](content%2Fhtmx-basic-contacts-crud.gif)
 
-**Pagination and Sorting with HTMX in Laravel:**
+**CRUD along with Pagination and Sorting with HTMX in Laravel:**
 ![Pagination and Sorting](content%2Fhtmx-table-pagination-and-sorting.gif)
 
  
