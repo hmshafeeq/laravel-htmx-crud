@@ -1,4 +1,4 @@
-@aware(['record'])
+@props(['record'])
 
 @php
         $attrs = ['class' => 'mr-1 uppercase hover:underline cursor-pointer', 'hx-target' => '#section'];
